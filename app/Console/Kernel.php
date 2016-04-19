@@ -1,5 +1,7 @@
 <?php
 
+// Execte * * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1
+
 namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
@@ -8,6 +10,7 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 require 'vendor/autoload.php';
 
 use Carbon\Carbon;
+use App\Notification;
 
 class Kernel extends ConsoleKernel
 {
@@ -17,7 +20,7 @@ class Kernel extends ConsoleKernel
 	 * @var array
 	 */
 	protected $commands = [
-		// Commands\Inspire::class,
+		//\App\Console\Commands\Inspire::class,
 	];
 
 	/**
@@ -28,6 +31,20 @@ class Kernel extends ConsoleKernel
 	 */
 	protected function schedule(Schedule $schedule)
 	{
-		
+		/*
+		$schedule->call(function () {
+			$now = Carbon::now()->toDateTimeString();
+            $notifications = DB::table('notifications')
+					->select('id', 'deviceToken', 'program', 'start_at')
+					->where('start_at', '=', $now)
+					->get();
+
+			foreach ($notifications as $notification) {
+				PushNotification::app('appName')
+                ->to($notification->deviceToken)
+                ->send('El programa '.$notification->program.' esta a punto de empezar!');
+			}
+        })->everyMinute();
+        */
 	}
 }
