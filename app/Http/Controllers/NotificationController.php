@@ -25,12 +25,4 @@ class NotificationController extends Controller
 
     	return redirect()->back();
 	}
-
-	public function json(){
-		$notifications = DB::table('notifications')
-					->select('id', 'deviceToken', 'program', 'start_at')
-					->get();
-
-		return Response::json($notifications);
-	}
 }

@@ -14,6 +14,12 @@ Route::get('/', function(){
 	return view('welcome');
 });
 
-Route::get('/notifications', 'NotificationController@json');
+Route::get('/notifications',function(){
+	$notifications = DB::table('notifications')
+					->select('id', 'deviceToken', 'program', 'start_at')
+					->get();
+
+	return Response::json($notifications);
+});
 
 Route::post('/notification', 'NotificationController@store');

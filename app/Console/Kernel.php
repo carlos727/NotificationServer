@@ -40,9 +40,10 @@ class Kernel extends ConsoleKernel
 					->get();
 
 			foreach ($notifications as $notification) {
-				PushNotification::app('appName')
+				PushNotification::app('UninorteFM')
                 ->to($notification->deviceToken)
                 ->send('El programa '.$notification->program.' esta a punto de empezar!');
+                $notification->delete();
 			}
         })->everyMinute();
         */
