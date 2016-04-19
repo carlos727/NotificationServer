@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/notificationserver":{"type":null,"mount_options":[],"guestpath":"/home/vagrant/notificationserver","hostpath":"C:/Users/carlos/LaravelsProjects/NotificationServer","disabled":false},"/vagrant":{"guestpath":"/vagrant","hostpath":"C:/Users/carlos/LaravelsProjects/NotificationServer","disabled":false}}}
