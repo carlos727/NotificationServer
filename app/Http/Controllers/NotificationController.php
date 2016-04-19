@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-use App\Notification
+use DB;
+
+use App\Notification;
 
 class NotificationController extends Controller
 {
