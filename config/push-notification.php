@@ -8,9 +8,9 @@ return array(
         'passPhrase'  =>'password',
         'service'     =>'apns'
     ),
-    'appNameAndroid' => array(
+    'notificationServerAndroid' => array(
         'environment' =>'production',
-        'apiKey'      =>'yourAPIKey',
+        'apiKey'      =>'AIzaSyAcdGpG4Dybt-Zhx4KIfpplW-7vFDCBAlE',
         'service'     =>'gcm'
     )
 

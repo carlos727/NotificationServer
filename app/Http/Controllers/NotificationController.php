@@ -3,26 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
-use DB;
 
 use App\Notification;
 
 class NotificationController extends Controller
 {
 	public function store(Request $request){
-		$this->validate($request, [
-		    'deviceToken'	=> 'required',
-		    'program'		=> 'required',
-		    'start_at'		=> 'required|date_format:Y-m-d H:i:s'
-		]);
+		if (request->has('deviceToken') && request->has('program') && request->has('start_at')) {
+			$input = $request->only(['deviceToken', 'program', 'start_at']);
 
-		$input = $request->all();
+			$notification = new Notification;
+			$notification->deviceToken = $request->input('deviceToken');
+			$notification->program = $request->input('program');
+			$notification->start_at = $request->input('start_at');
+			$notification->save();
+		}
 
-    	Notification::create($input);
-
-    	return redirect()->back();
+		return redirect('/');
 	}
 }
