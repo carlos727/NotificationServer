@@ -1,17 +1,24 @@
-<?php
+<?php namespace App\Http\Middleware;
 
-namespace App\Http\Middleware;
+use Closure;
 
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
+use Illuminate\Contracts\Routing\Middleware;
+use Illuminate\Http\Response;
 
-class VerifyCsrfToken extends BaseVerifier
-{
-    /**
-     * The URIs that should be excluded from CSRF verification.
-     *
-     * @var array
-     */
-    protected $except = [
-        //
-    ];
+class Cors implements Middleware {
+
+	 /**
+	  * Handle an incoming request.
+	  *
+	  * @param \Illuminate\Http\Request $request
+	  * @param \Closure $next
+	  * @return mixed
+	  */
+	 public function handle($request, Closure $next)
+	 {
+		  return $next($request)
+				->header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE')
+				->header('Access-Control-Allow-Headers', 'Content-Type, Accept, Authorization, X-Requested-With, X-Authorization, Access-Control-Allow-Origin')
+				->header('Access-Control-Allow-Credentials', 'true');
+	 }
 }
