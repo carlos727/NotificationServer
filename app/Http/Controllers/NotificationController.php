@@ -10,16 +10,14 @@ use App\Notification;
 class NotificationController extends Controller
 {
 	public function store(Request $request){
-		if (request->has('deviceToken') && request->has('program') && request->has('start_at')) {
-			$input = $request->only(['deviceToken', 'program', 'start_at']);
+		if ($request->has('deviceToken') && $request->has('program') && $request->has('start_at')) {
 
 			$notification = new Notification;
 			$notification->deviceToken = $request->input('deviceToken');
 			$notification->program = $request->input('program');
 			$notification->start_at = $request->input('start_at');
 			$notification->save();
+			return response($notification, 201);
 		}
-
-		return redirect('/');
 	}
 }

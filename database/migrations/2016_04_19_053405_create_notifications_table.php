@@ -16,7 +16,7 @@ class CreateNotificationsTable extends Migration
 			$table->increments('id');
 			$table->string('deviceToken');
 			$table->string('program');
-			$table->dateTime('start_at');
+			$table->string('start_at');
 			$table->timestamps();
 		});
 	}
