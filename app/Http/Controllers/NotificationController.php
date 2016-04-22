@@ -18,6 +18,8 @@ class NotificationController extends Controller
 			$notification->start_at = $request->input('start_at');
 			$notification->save();
 			return response($notification, 201);
+		} else {
+			return view('token');
 		}
 	}
 }
