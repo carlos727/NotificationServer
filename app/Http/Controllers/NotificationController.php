@@ -11,10 +11,8 @@ use Davibennun\LaravelPushNotification\Facades\PushNotification;
 class NotificationController extends Controller
 {
 	public function store(Request $request){
-		//$deviceToken = "APA91bF4coca8Mvnj_OxdBFjOHd6OIWOTX0co0dDaQbaEPHlZD0n6eeFZLwNQhOYNbX4w5mTXgvrAm2ZX0NKHYoHMCWRFnymWwf5ts2oPHndNl-rxKGpXabDE2foUute2Znn6gt3bcewlU0KN5LvXd0OJG0K09RcFw";
-
+		
 		if ($request->has('deviceToken') && $request->has('program') && $request->has('start_at')) {
-
 			$notification = new Notification;
 			$notification->deviceToken = $request->input('deviceToken');
 			$notification->program = $request->input('program');
@@ -27,8 +25,10 @@ class NotificationController extends Controller
 
 			return response($notification, 201);		
 		} else {
+			$deviceToken = "APA91bF4coca8Mvnj_OxdBFjOHd6OIWOTX0co0dDaQbaEPHlZD0n6eeFZLwNQhOYNbX4w5mTXgvrAm2ZX0NKHYoHMCWRFnymWwf5ts2oPHndNl-rxKGpXabDE2foUute2Znn6gt3bcewlU0KN5LvXd0OJG0K09RcFw";
+
 			PushNotification::app('notificationServerAndroid')
-                ->to($notification->deviceToken)
+                ->to($deviceToken)
                 ->send('El request esta malo!');
 		}
 	}
