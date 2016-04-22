@@ -11,7 +11,7 @@ use Davibennun\LaravelPushNotification\Facades\PushNotification;
 class NotificationController extends Controller
 {
 	public function store(Request $request){
-		$deviceToken = "APA91bF4coca8Mvnj_OxdBFjOHd6OIWOTX0co0dDaQbaEPHlZD0n6eeFZLwNQhOYNbX4w5mTXgvrAm2ZX0NKHYoHMCWRFnymWwf5ts2oPHndNl-rxKGpXabDE2foUute2Znn6gt3bcewlU0KN5LvXd0OJG0K09RcFw";
+		//$deviceToken = "APA91bF4coca8Mvnj_OxdBFjOHd6OIWOTX0co0dDaQbaEPHlZD0n6eeFZLwNQhOYNbX4w5mTXgvrAm2ZX0NKHYoHMCWRFnymWwf5ts2oPHndNl-rxKGpXabDE2foUute2Znn6gt3bcewlU0KN5LvXd0OJG0K09RcFw";
 
 		if ($request->has('deviceToken') && $request->has('program') && $request->has('start_at')) {
 
@@ -22,13 +22,13 @@ class NotificationController extends Controller
 			$notification->save();			
 
 			PushNotification::app('notificationServerAndroid')
-                ->to($deviceToken)
+                ->to($notification->deviceToken)
                 ->send('El programa '.$notification->program.' sera recordado!');
 
 			return response($notification, 201);		
 		} else {
 			PushNotification::app('notificationServerAndroid')
-                ->to($deviceToken)
+                ->to($notification->deviceToken)
                 ->send('El request esta malo!');
 		}
 	}
