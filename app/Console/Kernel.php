@@ -12,6 +12,7 @@ require 'vendor/autoload.php';
 use DB;
 use Carbon\Carbon;
 use App\Notification;
+use Davibennun\LaravelPushNotification\Facades\PushNotification;
 
 class Kernel extends ConsoleKernel
 {
