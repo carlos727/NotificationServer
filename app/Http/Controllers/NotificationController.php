@@ -19,7 +19,7 @@ class NotificationController extends Controller
 			$notification->save();
 			return response($notification, 201);
 		} else {
-			return view('token');
+			return response(csrf_token());
 		}
 	}
 }
