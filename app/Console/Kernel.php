@@ -7,11 +7,8 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
-require 'vendor/autoload.php';
-
 use DB;
 use Carbon\Carbon;
-use App\Notification;
 use Davibennun\LaravelPushNotification\Facades\PushNotification;
 
 class Kernel extends ConsoleKernel
@@ -22,7 +19,7 @@ class Kernel extends ConsoleKernel
 	 * @var array
 	 */
 	protected $commands = [
-		//\App\Console\Commands\Inspire::class,
+		\App\Console\Commands\Inspire::class,
 	];
 
 	/**
@@ -33,22 +30,25 @@ class Kernel extends ConsoleKernel
 	 */
 	protected function schedule(Schedule $schedule)
 	{
-		/*
 		$schedule->call(function () {
-			$now = Carbon::now()->toDateTimeString();
-			quit seconds to $now to can compare with start_at
-            $notifications = DB::table('notifications')
+			$now = Carbon::now('America/Bogota');
+			$day = var_dump($now->dayOfWeek);
+			$hour =var_dump($now->hour);
+			$minute = var_dump($now->minute);
+			$start_at = $hour.":".$minute;
+
+			$notifications = DB::table('notifications')
 					->select('id', 'deviceToken', 'program', 'start_at')
-					->where('start_at', '=', $now)
+					->where(['day', $day], ['start_at', $start_at])
 					->get();
 
 			foreach ($notifications as $notification) {
 				PushNotification::app('notificationServerAndroid')
-                ->to($notification->deviceToken)
-                ->send('El programa '.$notification->program.' esta a punto de empezar!');
-                $notification->delete();
+				->to($notification->deviceToken)
+				->send('El programa '.$notification->program.' esta a punto de empezar!');
+
+				$notification->delete();
 			}
-        })->everyMinute();
-        */
+		})->everyMinute();
 	}
 }
