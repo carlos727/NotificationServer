@@ -9,7 +9,7 @@
 		"laravel/framework": "5.2.*",
 		"nesbot/carbon": "^1.21",
 		"davibennun/laravel-push-notification": "dev-laravel5",
-		"chrisbjr/api-guard": "3.1.*"
+		"chrisbjr/api-guard": "dev-master"
 	},
 	"require-dev": {
 		"fzaninotto/faker": "~1.4",
@@ -19,7 +19,7 @@
 		"symfony/dom-crawler": "2.8.*|3.0.*",
 		"laravel/homestead": "^3.0",
 		"davibennun/laravel-push-notification": "dev-laravel5",
-		"chrisbjr/api-guard": "3.1.*"
+		"chrisbjr/api-guard": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

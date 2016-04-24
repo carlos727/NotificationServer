@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5ffbb209829eb50b149cf65a7eeed7cf",
-    "content-hash": "72f079a75c80fe866571e0e87888177f",
+    "hash": "0cc914c6cf1baf002de3ab267c6f47a7",
+    "content-hash": "a8002a4b2bf70ccf2eaf19dc37afca9d",
     "packages": [
         {
             "name": "chrisbjr/api-guard",
-            "version": "v3.1.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/chrisbjr/api-guard.git",
-                "reference": "7cee06d14a9d6b4b8367b9ca8724afe470047168"
+                "reference": "38578031db63425f45f42642e41e23313333023d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/chrisbjr/api-guard/zipball/7cee06d14a9d6b4b8367b9ca8724afe470047168",
-                "reference": "7cee06d14a9d6b4b8367b9ca8724afe470047168",
+                "url": "https://api.github.com/repos/chrisbjr/api-guard/zipball/38578031db63425f45f42642e41e23313333023d",
+                "reference": "38578031db63425f45f42642e41e23313333023d",
                 "shasum": ""
             },
             "require": {
@@ -68,7 +68,7 @@
                 "laravel",
                 "rest"
             ],
-            "time": "2016-03-09 03:48:18"
+            "time": "2016-03-24 15:08:44"
         },
         {
             "name": "classpreloader/classpreloader",
@@ -3870,7 +3870,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "davibennun/laravel-push-notification": 20
+        "davibennun/laravel-push-notification": 20,
+        "chrisbjr/api-guard": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

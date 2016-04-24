@@ -1,7 +1,4 @@
 <?php
-
-// Execte * * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1
-
 namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
