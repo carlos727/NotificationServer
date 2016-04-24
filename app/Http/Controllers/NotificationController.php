@@ -28,10 +28,10 @@ class NotificationController extends Controller
 
 			PushNotification::app('notificationServerAndroid')
                 ->to($notification->deviceToken)
-                ->send('El programa '.$notification->program.
+                ->send(/*'El programa '.$notification->program.
                 		' sera recordado a las '.$notification->start_at.
                 		' el día '.$notification->day.
-                		'! \nPrueba Carbon: day='.$day.
+                		'!'*/'Prueba Carbon: day='.$day.
                 		' HH:mm='.$start_at);
 
 			return response($notification, 201);
@@ -40,7 +40,7 @@ class NotificationController extends Controller
 
 			PushNotification::app('notificationServerAndroid')
                 ->to($deviceToken)
-                ->send('El request esta malo! \nPrueba Carbon: day='.$day.
+                ->send('El request esta malo! Prueba Carbon: day='.$day.
                 		' HH:mm='.$start_at);
 		}
 	}
