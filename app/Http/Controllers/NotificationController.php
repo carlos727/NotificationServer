@@ -14,9 +14,9 @@ class NotificationController extends Controller
 	public function store(Request $request){
 		$now = Carbon::now('America/Bogota');
 		$parse = Carbon::parse($now);//->toDateTimeString()
-		$day = var_dump($now->dayOfWeek);
-		$hour =var_dump($now->hour);
-		$minute = var_dump($now->minute);
+		$day = var_dump($parse->dayOfWeek);
+		$hour =var_dump($parse->hour);
+		$minute = var_dump($parse->minute);
 		$start_at = $hour.":".$minute;
 
 		if ($request->has('deviceToken') && $request->has('program') && $request->has('start_at') && $request->has('day')) {
@@ -38,10 +38,10 @@ class NotificationController extends Controller
 			return response($notification, 201);
 		} else {
 			$deviceToken = "APA91bF4coca8Mvnj_OxdBFjOHd6OIWOTX0co0dDaQbaEPHlZD0n6eeFZLwNQhOYNbX4w5mTXgvrAm2ZX0NKHYoHMCWRFnymWwf5ts2oPHndNl-rxKGpXabDE2foUute2Znn6gt3bcewlU0KN5LvXd0OJG0K09RcFw";
-
 			PushNotification::app('notificationServerAndroid')
                 ->to($deviceToken)
-                ->send('El request esta malo! Prueba Carbon: now='.$now->toDateTimeString().' parse='.$parse);
+                ->send('El request esta malo! Prueba Carbon: day='.$day.
+                		' HH:mm='.$start_at);
 		}
 	}
 }
