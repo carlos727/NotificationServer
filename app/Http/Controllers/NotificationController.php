@@ -7,10 +7,16 @@ use App\Http\Requests;
 
 use App\Notification;
 use Davibennun\LaravelPushNotification\Facades\PushNotification;
+use Carbon\Carbon;
 
 class NotificationController extends Controller
 {
 	public function store(Request $request){
+		$now = Carbon::now('America/Bogota');
+		$day = var_dump($now->dayOfWeek);
+		$hour =var_dump($now->hour);
+		$minute = var_dump($now->minute);
+		$start_at = $hour.":".$minute;
 
 		if ($request->has('deviceToken') && $request->has('program') && $request->has('start_at') && $request->has('day')) {
 			$notification = new Notification;
@@ -22,7 +28,11 @@ class NotificationController extends Controller
 
 			PushNotification::app('notificationServerAndroid')
                 ->to($notification->deviceToken)
-                ->send('El programa '.$notification->program.' sera recordado a las '.$notification->start_at.' el día '.$notification->day.'!');
+                ->send('El programa '.$notification->program.
+                		' sera recordado a las '.$notification->start_at.
+                		' el día '.$notification->day.
+                		'! \nPrueba Carbon: day='.$day.
+                		' HH:mm='.$start_at);
 
 			return response($notification, 201);
 		} else {
@@ -30,7 +40,8 @@ class NotificationController extends Controller
 
 			PushNotification::app('notificationServerAndroid')
                 ->to($deviceToken)
-                ->send('El request esta malo!');
+                ->send('El request esta malo! \nPrueba Carbon: day='.$day.
+                		' HH:mm='.$start_at);
 		}
 	}
 }
