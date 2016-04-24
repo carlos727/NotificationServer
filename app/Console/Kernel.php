@@ -32,20 +32,30 @@ class Kernel extends ConsoleKernel
 	{
 		$schedule->call(function () {
 			$now = Carbon::now('America/Bogota');
-			$day = var_dump($now->dayOfWeek);
-			$hour =var_dump($now->hour);
-			$minute = var_dump($now->minute);
+			$day = $now->dayOfWeek;
+
+			if ($now->hour < 10) {
+				$hour = "0".$now->hour;
+			} else {
+				$hour = $now->hour;
+			}
+
+			if ($now->minute < 10) {
+				$minute = "0".$now->minute;
+			} else {
+				$minute = $now->minute;
+			}
 			$start_at = $hour.":".$minute;
 
 			$notifications = DB::table('notifications')
-					->select('id', 'deviceToken', 'program', 'start_at')
-					->where(['day', $day], ['start_at', $start_at])
-					->get();
+								->select('id', 'deviceToken', 'program', 'start_at', 'day')
+								->where(['day', $day], ['start_at', $start_at])
+								->get();
 
 			foreach ($notifications as $notification) {
 				PushNotification::app('notificationServerAndroid')
-				->to($notification->deviceToken)
-				->send('El programa '.$notification->program.' esta a punto de empezar!');
+									->to($notification->deviceToken)
+									->send('El programa '.$notification->program.' esta a punto de empezar!');
 
 				$notification->delete();
 			}
