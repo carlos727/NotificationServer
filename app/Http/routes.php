@@ -16,7 +16,7 @@ Route::get('/', function(){
 
 Route::get('/notifications',function(){
 	$notifications = DB::table('notifications')
-					->select('id', 'deviceToken', 'program', 'start_at')
+					->select('id', 'deviceToken', 'program', 'start_at', 'day')
 					->get();
 
 	return Response::json($notifications);

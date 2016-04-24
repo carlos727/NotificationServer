@@ -13,6 +13,7 @@ class NotificationController extends Controller
 {
 	public function store(Request $request){
 		$now = Carbon::now('America/Bogota');
+		$parse = Carbon::parse($now);//->toDateTimeString()
 		$day = var_dump($now->dayOfWeek);
 		$hour =var_dump($now->hour);
 		$minute = var_dump($now->minute);
@@ -40,8 +41,7 @@ class NotificationController extends Controller
 
 			PushNotification::app('notificationServerAndroid')
                 ->to($deviceToken)
-                ->send('El request esta malo! Prueba Carbon: day='.$day.
-                		' HH:mm='.$start_at);
+                ->send('El request esta malo! Prueba Carbon: now='.$now->toDateTimeString().' parse='.$parse);
 		}
 	}
 }
