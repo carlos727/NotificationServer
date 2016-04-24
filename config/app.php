@@ -159,8 +159,6 @@ return [
         *My Providers
         */
         Davibennun\LaravelPushNotification\LaravelPushNotificationServiceProvider::class,
-        \vendor\chrisbjr\api-guard\src\Providers\ApiGuardServiceProvider::class,
-
     ],
 
     /*
@@ -211,7 +209,6 @@ return [
         *My Aliases
         */
         'PushNotification' => Davibennun\LaravelPushNotification\Facades\PushNotification::class,
-        'ApiGuardAuth' => \vendor\chrisbjr\api-guard\src\Facades\ApiGuardAuth::class,
     ],
 
 ];

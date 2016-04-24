@@ -10,20 +10,9 @@ use Response;
 use App\Notification;
 
 use Davibennun\LaravelPushNotification\Facades\PushNotification;
-use \vendor\chrisbjr\api-guard\src\Http\Controllers;
 
-class NotificationController extends ApiGuardController
+class NotificationController extends Controller
 {
-	protected $apiMethods = [
-		'index' => [
-            'keyAuthentication' => false
-        ],
-
-        'all' => [
-            'keyAuthentication' => false
-        ],
-    ];
-
 	public function index() {
 		return view('welcome');
 	}
