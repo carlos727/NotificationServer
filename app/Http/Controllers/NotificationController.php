@@ -14,9 +14,9 @@ class NotificationController extends Controller
 	public function store(Request $request){
 		$now = Carbon::now('America/Bogota');
 		$parse = Carbon::parse($now);//->toDateTimeString()
-		$day = var_dump($parse->dayOfWeek);
-		$hour =var_dump($parse->hour);
-		$minute = var_dump($parse->minute);
+		$day = $now->dayOfWeek;
+		$hour =$parse->hour;
+		$minute = $parse->minute;
 		$start_at = $hour.":".$minute;
 
 		if ($request->has('deviceToken') && $request->has('program') && $request->has('start_at') && $request->has('day')) {
