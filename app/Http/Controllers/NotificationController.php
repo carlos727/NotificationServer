@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use DB;
+use Response;
 use App\Notification;
 use Davibennun\LaravelPushNotification\Facades\PushNotification;
 
@@ -17,10 +18,10 @@ class NotificationController extends Controller
 
 	public function all() {
 		$notifications = DB::table('notifications')
-					->select('id', 'deviceToken', 'program', 'start_at', 'day')
-					->groupBy('day', 'id', 'deviceToken', 'program', 'start_at')
-					->orderBy('start_at', 'asc')
-					->get();
+						->select('id', 'deviceToken', 'program', 'start_at', 'day')
+						->groupBy('day', 'id', 'deviceToken', 'program', 'start_at')
+						->orderBy('start_at', 'asc')
+						->get();
 
 		return Response::json($notifications);
 	}
