@@ -212,7 +212,6 @@ return [
         */
         'PushNotification' => Davibennun\LaravelPushNotification\Facades\PushNotification::class,
         'ApiGuardAuth' => \Chrisbjr\ApiGuard\Facades\ApiGuardAuth::class,
-
     ],
 
 ];
