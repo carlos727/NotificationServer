@@ -10,16 +10,9 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/', function(){
-	return view('welcome');
-});
-
-Route::get('/notifications',function(){
-	$notifications = DB::table('notifications')
-					->select('id', 'deviceToken', 'program', 'start_at', 'day')
-					->get();
-
-	return Response::json($notifications);
-});
+Route::get('/', 'NotificationController@index');
 
 Route::post('/notification', 'NotificationController@store');
+
+Route::get('/notifications', 'NotificationController@all');
+

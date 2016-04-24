@@ -11,7 +11,21 @@ use Davibennun\LaravelPushNotification\Facades\PushNotification;
 
 class NotificationController extends Controller
 {
-	public function store(Request $request){
+	public function index() {
+		return view('welcome');
+	}
+
+	public function all() {
+		$notifications = DB::table('notifications')
+					->select('id', 'deviceToken', 'program', 'start_at', 'day')
+					->groupBy('day', 'id', 'deviceToken', 'program', 'start_at')
+					->orderBy('start_at', 'asc')
+					->get();
+
+		return Response::json($notifications);
+	}
+
+	public function store(Request $request) {
 		if ($request->has('deviceToken') && $request->has('program') && $request->has('start_at') && $request->has('day')) {
 			switch ($request->input('day')) {
 				case 0:	$day = "Domingo";break;
