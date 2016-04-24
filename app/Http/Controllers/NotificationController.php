@@ -10,7 +10,7 @@ use Response;
 use App\Notification;
 
 use Davibennun\LaravelPushNotification\Facades\PushNotification;
-use Chrisbjr\ApiGuard\Http\Controllers\ApiGuardController;
+use \vendor\chrisbjr\api-guard\src\Http\Controllers;
 
 class NotificationController extends ApiGuardController
 {
