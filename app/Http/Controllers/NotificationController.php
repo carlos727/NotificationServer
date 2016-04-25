@@ -13,14 +13,10 @@ use Davibennun\LaravelPushNotification\Facades\PushNotification;
 
 class NotificationController extends Controller
 {
-	public function index() {
-		return view('welcome');
-	}
-
 	public function all() {
 		$notifications = DB::table('notifications')
 						->select('id', 'deviceToken', 'program', 'start_at', 'day')
-						->groupBy('day', 'id', 'deviceToken', 'program', 'start_at')
+						->groupBy('day', 'deviceToken', 'id', 'program', 'start_at')
 						->orderBy('start_at', 'asc')
 						->get();
 
@@ -61,20 +57,11 @@ class NotificationController extends Controller
 				$notification->start_at = $request->input('start_at');
 				$notification->day = $request->input('day');
 				$notification->save();
-
-				PushNotification::app('notificationServerAndroid')
-					                ->to($notification->deviceToken)
-					                ->send('El programa '.$notification->program.
-					                		' sera recordado a las '.$notification->start_at.
-					                		' del día '.$day.'!');
-
 				return response($notification, 201);
 			} else {
 				PushNotification::app('notificationServerAndroid')
 					                ->to($notification->deviceToken)
-					                ->send('El programa '.$request->input('program').
-					                		' ya esta en los contenidos que serán recordados a las '.$request->input('start_at').
-					                		' del día '.$day.'!');
+					                ->send('El programa escogido ya esta en los contenidos que serán recordados el día '.$day.'!');
 			}
 		}
 	}
