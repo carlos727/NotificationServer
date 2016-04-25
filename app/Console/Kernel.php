@@ -46,7 +46,7 @@ class Kernel extends ConsoleKernel
 
 			$notifications = DB::table('notifications')
 								->select('id', 'deviceToken', 'program', 'start_at', 'day')
-								->where(['day', $day], ['start_at', $start_at])
+								->where(['day', '=', $day], ['start_at', '=', $start_at])
 								->get();
 
 			foreach ($notifications as $notification) {
