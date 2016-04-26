@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
 	{
 		$schedule->call(function () {
 			$now = Carbon::now('America/Bogota');
-			$day = $now->dayOfWeek;
+			$day = (int)$now->dayOfWeek;
 
 			if ($now->hour < 10) {
 				$hour = "0".$now->hour;
@@ -46,7 +46,7 @@ class Kernel extends ConsoleKernel
 
 			$notifications = DB::table('notifications')
 								->select('id', 'deviceToken', 'program', 'start_at', 'day')
-								->where(['day', '=', $day], ['start_at', '=', $start_at])
+								->where(['day', $day], ['start_at', $start_at])
 								->get();
 
 			foreach ($notifications as $notification) {
